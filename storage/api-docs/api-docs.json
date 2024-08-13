@@ -26,8 +26,8 @@
                                 ],
                                 "properties": {
                                     "identification": {
-                                        "type": "string",
-                                        "example": "40236282889"
+                                        "type": "numeric",
+                                        "example": 40236282889
                                     },
                                     "name": {
                                         "type": "string",
@@ -265,8 +265,8 @@
                                             "example": 1
                                         },
                                         "identification": {
-                                            "type": "string",
-                                            "example": "40236282889"
+                                            "type": "numeric",
+                                            "example": 40236282889
                                         },
                                         "name": {
                                             "type": "string",
@@ -376,17 +376,14 @@
                 "tags": [
                     "Movements"
                 ],
-                "summary": "Store applicant",
-                "description": "Store applicant",
+                "summary": "Store movement",
+                "description": "Store movement",
                 "operationId": "store_movements",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "naidentificationme"
-                                ],
                                 "properties": {
                                     "request_id": {
                                         "type": "numeric",
@@ -443,8 +440,8 @@
                 "tags": [
                     "Movements"
                 ],
-                "summary": "See applicant",
-                "description": "See applicant",
+                "summary": "See movement",
+                "description": "See movement",
                 "operationId": "watch_movements",
                 "parameters": [
                     {
@@ -524,8 +521,8 @@
                 "tags": [
                     "Movements"
                 ],
-                "summary": "Update applicant",
-                "description": "Update applicant",
+                "summary": "Update movement",
+                "description": "Update movement",
                 "operationId": "update_movements",
                 "parameters": [
                     {
@@ -542,9 +539,6 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "identification"
-                                ],
                                 "properties": {
                                     "request_id": {
                                         "type": "numeric",
@@ -599,8 +593,8 @@
                 "tags": [
                     "Movements"
                 ],
-                "summary": "Delete applicant",
-                "description": "Delete applicant",
+                "summary": "Delete movement",
+                "description": "Delete movement",
                 "operationId": "delete_movements",
                 "parameters": [
                     {
@@ -720,17 +714,14 @@
                 "tags": [
                     "Requests"
                 ],
-                "summary": "Store applicant",
-                "description": "Store applicant",
+                "summary": "Store request",
+                "description": "Store request",
                 "operationId": "store_applicants",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "naidentificationme"
-                                ],
                                 "properties": {
                                     "identification": {
                                         "type": "numeric",
@@ -786,13 +777,100 @@
                 ]
             }
         },
+        "/api/requests/user/{id}": {
+            "get": {
+                "tags": [
+                    "Requests"
+                ],
+                "summary": "See request",
+                "description": "See request",
+                "operationId": "watch_request_by_user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "identification": {
+                                            "type": "numeric",
+                                            "example": ""
+                                        },
+                                        "amount": {
+                                            "type": "numeric",
+                                            "example": ""
+                                        },
+                                        "quotas": {
+                                            "type": "numeric",
+                                            "example": ""
+                                        },
+                                        "total": {
+                                            "type": "numeric",
+                                            "example": ""
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T00:09:16.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T12:33:45.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
         "/api/requests/{id}": {
             "get": {
                 "tags": [
                     "Requests"
                 ],
-                "summary": "See applicant",
-                "description": "See applicant",
+                "summary": "See request",
+                "description": "See request",
                 "operationId": "watch_applicants",
                 "parameters": [
                     {
@@ -876,8 +954,8 @@
                 "tags": [
                     "Requests"
                 ],
-                "summary": "Update applicant",
-                "description": "Update applicant",
+                "summary": "Update request",
+                "description": "Update request",
                 "operationId": "update_applicants",
                 "parameters": [
                     {
@@ -894,9 +972,6 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "identification"
-                                ],
                                 "properties": {
                                     "identification": {
                                         "type": "numeric",
@@ -955,8 +1030,8 @@
                 "tags": [
                     "Requests"
                 ],
-                "summary": "Delete applicant",
-                "description": "Delete applicant",
+                "summary": "Delete request",
+                "description": "Delete request",
                 "operationId": "delete_applicants",
                 "parameters": [
                     {

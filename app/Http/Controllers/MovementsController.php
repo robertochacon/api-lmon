@@ -40,8 +40,8 @@ class MovementsController extends Controller
      */
     public function index()
     {
-        $patents = Movements::with('request')->get();
-        return response()->json(["data"=>$patents],200);
+        $movements = Movements::with('request')->get();
+        return response()->json(["data"=>$movements],200);
     }
 
 
@@ -51,8 +51,8 @@ class MovementsController extends Controller
      *     operationId="watch_movements",
      *     tags={"Movements"},
      *     security={{ "apiAuth": {} }},
-     *     summary="See applicant",
-     *     description="See applicant",
+     *     summary="See movement",
+     *     description="See movement",
      *    @OA\Parameter(
      *         in="path",
      *         name="id",
@@ -84,8 +84,8 @@ class MovementsController extends Controller
 
     public function watch($id){
         try{
-            $applicant = Movements::with('request')->find($id);
-            return response()->json(["data"=>$applicant],200);
+            $movement = Movements::with('request')->find($id);
+            return response()->json(["data"=>$movement],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
         }
@@ -97,12 +97,11 @@ class MovementsController extends Controller
      *      operationId="store_movements",
      *      tags={"Movements"},
      *      security={{ "apiAuth": {} }},
-     *      summary="Store applicant",
-     *      description="Store applicant",
+     *      summary="Store movement",
+     *      description="Store movement",
      *      @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *            required={"naidentificationme"},
      *              @OA\Property(property="request_id", type="numeric", example="1"),
      *              @OA\Property(property="amount", type="numeric", example="10000"),
      *              @OA\Property(property="quotas", type="numeric", example="4"),
@@ -121,12 +120,12 @@ class MovementsController extends Controller
 
     public function register(Request $request)
     {
-        $applicant = new Movements(request()->all());
-        $applicant->save();
+        $movement = new Movements(request()->all());
+        $movement->save();
         if (isset($request->kid_id)) {
-            $applicant->kids()->attach(['kid_id' => $request->kid_id]);
+            $movement->kids()->attach(['kid_id' => $request->kid_id]);
         }
-        return response()->json(["data"=>$applicant],200);
+        return response()->json(["data"=>$movement],200);
     }
 
     /**
@@ -135,8 +134,8 @@ class MovementsController extends Controller
      *     operationId="update_movements",
      *     tags={"Movements"},
      *     security={{ "apiAuth": {} }},
-     *     summary="Update applicant",
-     *     description="Update applicant",
+     *     summary="Update movement",
+     *     description="Update movement",
      *     @OA\Parameter(
      *         in="path",
      *         name="id",
@@ -146,7 +145,6 @@ class MovementsController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *            required={"identification"},
      *              @OA\Property(property="request_id", type="numeric", example="1"),
      *              @OA\Property(property="amount", type="numeric", example="10000"),
      *              @OA\Property(property="quotas", type="numeric", example="4"),
@@ -165,10 +163,10 @@ class MovementsController extends Controller
 
     public function update(Request $request, $id){
         try{
-            $applicant = Movements::where('id',$id)->first();
-            $applicant->update($request->all());
+            $movement = Movements::where('id',$id)->first();
+            $movement->update($request->all());
             if (isset($request->kid_id)) {
-                $applicant->kids()->attach(['kid_id' => $request->kid_id]);
+                $movement->kids()->attach(['kid_id' => $request->kid_id]);
             }
             return response()->json(["data"=>"ok"],200);
         }catch (Exception $e) {
@@ -182,8 +180,8 @@ class MovementsController extends Controller
      *      operationId="delete_movements",
      *      tags={"Movements"},
      *     security={{ "apiAuth": {} }},
-     *      summary="Delete applicant",
-     *      description="Delete applicant",
+     *      summary="Delete movement",
+     *      description="Delete movement",
      *    @OA\Parameter(
      *         in="path",
      *         name="id",

@@ -41,6 +41,7 @@ Route::group(['middleware' => 'api'], function () {
 
     //requests
     Route::get('/requests/', [RequestsController::class, 'index']);
+    Route::get('/requests/user/{identification}/', [RequestsController::class, 'byIdentification']);
     Route::get('/requests/{id}/', [RequestsController::class, 'watch']);
     Route::post('/requests/', [RequestsController::class, 'register']);
     Route::put('/requests/{id}/', [RequestsController::class, 'update']);
