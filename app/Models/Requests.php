@@ -12,7 +12,7 @@ class Requests extends Model
     protected $table = 'requests';
 
     protected $fillable = [
-        'id','identification','amout','quotas','total','status'
+        'id','identification','amount','quotas','total','status'
     ];
 
     public function movements(){

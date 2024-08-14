@@ -28,7 +28,7 @@ class AuthController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             required={"name","email","password","password_confirmation"},
-     *             @OA\Property(property="identification", type="numeric", example=40236282889),
+     *             @OA\Property(property="identification", type="string", example="40236282889"),
      *             @OA\Property(property="name", type="string", example="John Doe"),
      *             @OA\Property(property="email", type="string", format="email", example="john.doe@example.com"),
      *             @OA\Property(property="password", type="string", format="password", example="password123"),
@@ -54,18 +54,17 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'identification' => 'required|numeric',
-            'name' => 'string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'email' => 'required|string|email|unique:users',
+        //     'password' => 'required|string',
+        // ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
+        // if ($validator->fails()) {
+        //     return response()->json($validator->errors(), 400);
+        // }
 
         $user = User::create([
+            'identification' => $request->identification,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -186,7 +185,7 @@ class AuthController extends Controller
      *         description="Datos del usuario autenticado",
      *         @OA\JsonContent(
      *             @OA\Property(property="id", type="integer", example=1),
-     *             @OA\Property(property="identification", type="numeric", example=40236282889),
+     *             @OA\Property(property="identification", type="string", example="40236282889"),
      *             @OA\Property(property="name", type="string", example="John Doe"),
      *             @OA\Property(property="email", type="string", example="john.doe@example.com"),
      *             @OA\Property(property="created_at", type="string", format="date-time", example="2024-08-10T14:42:00Z"),

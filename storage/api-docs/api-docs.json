@@ -26,8 +26,8 @@
                                 ],
                                 "properties": {
                                     "identification": {
-                                        "type": "numeric",
-                                        "example": 40236282889
+                                        "type": "string",
+                                        "example": "40236282889"
                                     },
                                     "name": {
                                         "type": "string",
@@ -265,8 +265,8 @@
                                             "example": 1
                                         },
                                         "identification": {
-                                            "type": "numeric",
-                                            "example": 40236282889
+                                            "type": "string",
+                                            "example": "40236282889"
                                         },
                                         "name": {
                                             "type": "string",

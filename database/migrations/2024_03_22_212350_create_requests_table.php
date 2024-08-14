@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
             $table->string("identification")->nullable();
-            $table->integer("amout")->nullable();
+            $table->integer("amount")->nullable();
             $table->integer("quotas")->nullable();
             $table->integer("total")->nullable();
             $table->enum("status",['pending','approved','canceled'])->default('pending')->nullable();

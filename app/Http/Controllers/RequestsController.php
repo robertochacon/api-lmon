@@ -41,7 +41,7 @@ class RequestsController extends Controller
      */
     public function index()
     {
-        $requests = Requests::with('movements')->get();
+        $requests = Requests::with('movements')->orderBy('id','desc')->get();
         return response()->json(["data"=>$requests],200);
     }
 
@@ -85,7 +85,7 @@ class RequestsController extends Controller
 
      public function byIdentification($identification){
         try{
-            $request = Requests::with('movements')->where("identification", $identification)->get();
+            $request = Requests::with('movements')->where("identification", $identification)->orderBy('id','desc')->get();
             return response()->json(["data"=>$request],200);
         }catch (Exception $e) {
             return response()->json(["data"=>"none"],200);
