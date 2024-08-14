@@ -24,7 +24,7 @@ class RequestsResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('identification'),
-                Forms\Components\TextInput::make('amout')
+                Forms\Components\TextInput::make('amount')
                     ->numeric(),
                 Forms\Components\TextInput::make('quotas')
                     ->numeric(),
@@ -40,7 +40,7 @@ class RequestsResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('identification')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('amout')
+                Tables\Columns\TextColumn::make('amount')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('quotas')
