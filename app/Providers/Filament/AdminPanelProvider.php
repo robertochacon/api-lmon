@@ -48,7 +48,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->navigationItems([
                 NavigationItem::make('Documentation')
-                    ->url(env("APP_URL"."/api/documentation"), shouldOpenInNewTab: true)
+                    ->url(env("APP_URL")."/api/documentation", shouldOpenInNewTab: true)
                     ->icon('heroicon-o-link')
             ])
             ->middleware([
